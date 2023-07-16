@@ -10,12 +10,14 @@ export const CartProvider = ({ children }) => {
   };
 
   const handleDeleteFromCart = (productId) => {
-    const deleteProduct=cart.filter((product)=>product._id!==productId)
-    setCart(deleteProduct)
-  }
+    const deleteProduct = cart.filter((product) => product._id !== productId);
+    setCart(deleteProduct);
+  };
 
   return (
-    <CartContext.Provider value={{ cart, handleAddToCart,handleDeleteFromCart}}>
+    <CartContext.Provider
+      value={{ cart, handleAddToCart, handleDeleteFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );
