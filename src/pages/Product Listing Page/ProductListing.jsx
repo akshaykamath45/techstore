@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import {Link} from "react-router-dom"
 import { products } from "../../backend/db/products.js";
 import { CartContext } from "../../contexts/CartContext.js";
 import { WishlistContext } from "../../contexts/WishlistContext.js";
@@ -23,6 +24,7 @@ const ProductListing = () => {
             <p>{product.description}</p>
             <button onClick={handleCart}>Add to Cart</button>
             <button onClick={handleWishlist}> Add to Wishlist</button>
+            <Link to={`/product/${product._id}`}>Visit Item</Link>
             <hr />
           </div>
         );

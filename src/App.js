@@ -14,12 +14,12 @@ function App() {
       <NavLink to="/">Home</NavLink> || 
       <NavLink to="/products">Products</NavLink> || 
       <NavLink to="/cart">Cart</NavLink> ||
-      <NavLink to="/wishlist">Wishlist</NavLink> ||
+      <NavLink to="/wishlist">Wishlist</NavLink>
     </nav>
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/products" element={<ProductListing/>}/>
-      <Route path="/products/:productId" element={<ProductDetail/>}/>
+      <Route path="/product/:productId" element={<ProductDetail/>}/>
       <Route path="/cart" element={<Cart/>}/>
       <Route path="/wishlist" element={<Wishlist/>}/>
     </Routes>
