@@ -11,10 +11,10 @@ function App() {
   return (
     <div className="App">
     <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/products">Products</NavLink>
-      <NavLink to="/cart">Cart</NavLink>
-      <NavLink to="/wishlist">Wishlist</NavLink>
+      <NavLink to="/">Home</NavLink> || 
+      <NavLink to="/products">Products</NavLink> || 
+      <NavLink to="/cart">Cart</NavLink> ||
+      <NavLink to="/wishlist">Wishlist</NavLink> ||
     </nav>
     <Routes>
       <Route path="/" element={<Home/>}/>
