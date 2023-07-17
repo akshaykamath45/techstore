@@ -8,7 +8,8 @@ import {
   sortProducts,
   filterProductsByPrice,
   applyCategoryFilter,
-} from "../../utils/productUtils.js";
+} from "../..//utils/productUtils.js";
+import Sidebar from "../../components/Sidebar";
 
 import "./ProductListing.css";
 
@@ -60,61 +61,15 @@ const ProductListing = () => {
 
   return (
     <div>
-      <input
-        type="range"
-        min="0"
-        max="2000"
-        step="500"
+      {/* Render the Sidebar component */}
+      <Sidebar
         value={value}
-        onChange={handleInput}
+        sortingOrder={sortingOrder}
+        selectedCategories={selectedCategories}
+        handleInput={handleInput}
+        sortProductsHandler={sortProductsHandler}
+        handleCategoryChange={handleCategoryChange}
       />
-      <div className="slider-labels">
-        <span>0</span>
-        <span>500</span>
-        <span>1000</span>
-        <span>1500</span>
-        <span>2000</span>
-      </div>
-
-      <label>
-        <input
-          type="radio"
-          name="sorting"
-          value="highToLow"
-          checked={sortingOrder === "highToLow"}
-          onChange={() => sortProductsHandler("highToLow")}
-        />
-        High to Low
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="sorting"
-          value="lowToHigh"
-          checked={sortingOrder === "lowToHigh"}
-          onChange={() => sortProductsHandler("lowToHigh")}
-        />
-        Low to High
-      </label>
-
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            onChange={() => handleCategoryChange("Smartphones")}
-            checked={selectedCategories.includes("Smartphones")}
-          />
-          Smartphones
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            onChange={() => handleCategoryChange("Laptops")}
-            checked={selectedCategories.includes("Laptops")}
-          />
-          Laptops
-        </label>
-      </div>
 
       <h1>This is the Product Listing Page</h1>
       {techProducts.map((product) => {
