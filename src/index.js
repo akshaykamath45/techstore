@@ -5,17 +5,21 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CartContext, CartProvider } from "../src/contexts/CartContext";
-import { WishlistContext,WishlistProvider } from "./contexts/WishlistContext";
+import { WishlistContext, WishlistProvider } from "./contexts/WishlistContext";
+import { useCategoryContext, CategoryProvider } from "./contexts/CategoryContext";
 // Call make Server
 makeServer();
 export { CartContext };
-export {WishlistContext}
+export { WishlistContext };
+export {useCategoryContext}
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <CartProvider>
         <WishlistProvider>
-        <App />
+          <CategoryProvider>
+            <App />
+          </CategoryProvider>
         </WishlistProvider>
       </CartProvider>
     </Router>
