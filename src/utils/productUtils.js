@@ -1,4 +1,3 @@
-// utils/productUtils.js
 export const sortProducts = (products, order) => {
   if (order === "highToLow") {
     return [...products].sort((a, b) => b.price - a.price);
@@ -9,9 +8,9 @@ export const sortProducts = (products, order) => {
   }
 };
 
-export const filterProductsByPrice = (products, selectedPrice) => {
-  const selectedPriceInt = parseInt(selectedPrice, 10);
-  return products.filter((product) => product.price <= selectedPriceInt);
+export const filterProductsByRating = (products, selectRating) => {
+  const selectedRating = parseInt(selectRating, 10);
+  return products.filter((product) => product.rating <= selectedRating);
 };
 
 export const applyCategoryFilter = (products, selectedCategories) => {

@@ -17,16 +17,16 @@ export const categories = [
     categoryName: "Laptops",
     description: "Portable computing devices designed for mobile use.",
   },
+  {
+    _id: uuid(),
+    categoryName: "Tablets",
+    description: "Compact, handheld computing devices with touchscreens.",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Accessories",
+    description: "Various gadgets and add-ons to complement tech devices.",
+  },
   
 ];
 
-// {
-//   _id: uuid(),
-//   categoryName: "Tablets",
-//   description: "Compact, handheld computing devices with touchscreens.",
-// },
-// {
-//   _id: uuid(),
-//   categoryName: "Accessories",
-//   description: "Various gadgets and add-ons to complement tech devices.",
-// },

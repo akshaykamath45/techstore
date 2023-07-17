@@ -6,7 +6,7 @@ import { WishlistContext } from "../../contexts/WishlistContext.js";
 import { useCategoryContext } from "../../contexts/CategoryContext.js";
 import {
   sortProducts,
-  filterProductsByPrice,
+  filterProductsByRating,
   applyCategoryFilter,
 } from "../..//utils/productUtils.js";
 import Sidebar from "../../components/Sidebar";
@@ -30,7 +30,7 @@ const ProductListing = () => {
 
   const handleInput = (e) => {
     setValue(e.target.value);
-    const filteredProducts = filterProductsByPrice(products, e.target.value);
+    const filteredProducts = filterProductsByRating(products, e.target.value);
     setTechProducts(filteredProducts);
   };
 
@@ -61,7 +61,6 @@ const ProductListing = () => {
 
   return (
     <div>
-      {/* Render the Sidebar component */}
       <Sidebar
         value={value}
         sortingOrder={sortingOrder}
