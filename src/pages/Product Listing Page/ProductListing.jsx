@@ -71,25 +71,27 @@ const ProductListing = () => {
       />
 
       <h1>This is the Product Listing Page</h1>
-      {techProducts.map((product) => {
-        const handleCart = () => {
-          handleAddToCart(product);
-        };
-        const handleWishlist = () => {
-          handleAddToWishlist(product);
-        };
-        return (
-          <div key={product._id}>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
-            <button onClick={handleCart}>Add to Cart</button>
-            <button onClick={handleWishlist}>Add to Wishlist</button>
-            <Link to={`/product/${product._id}`}>Visit Item</Link>
-            <hr />
-          </div>
-        );
-      })}
+      <div className="product-listing">
+        {techProducts.map((product) => {
+          const handleCart = () => {
+            handleAddToCart(product);
+          };
+          const handleWishlist = () => {
+            handleAddToWishlist(product);
+          };
+          return (
+            <div key={product._id} className="product-card">
+             
+              <img src={product.image} alt={product.name} className='product-img'/>
+              <h4>{product.name}</h4>
+              <button onClick={handleCart}>Add to Cart</button>
+              <button onClick={handleWishlist}>Add to Wishlist</button>
+              <Link to={`/product/${product._id}`}>Visit Item</Link>
+              <hr />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

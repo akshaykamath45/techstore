@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext.js";
+import "./Cart.css";
 const Cart = () => {
   const { cart } = useContext(CartContext);
   const {handleDeleteFromCart} = useContext(CartContext);

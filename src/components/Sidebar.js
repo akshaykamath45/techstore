@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Sidebar.css";
 const Sidebar = ({
   value,
   sortingOrder,
@@ -9,7 +9,7 @@ const Sidebar = ({
   handleCategoryChange,
 }) => {
   return (
-    <div>
+    <div className="sidebar">
       <input
         type="range"
         min="0"
@@ -36,7 +36,7 @@ const Sidebar = ({
         />
         High to Low
       </label>
-      <label>
+      <label className="sort">
         <input
           type="radio"
           name="sorting"
