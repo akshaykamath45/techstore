@@ -64,6 +64,22 @@ const Sidebar = ({
           />
           Laptops
         </label>
+        <label>
+          <input
+            type="checkbox"
+            onChange={() => handleCategoryChange("Tablets")}
+            checked={selectedCategories.includes("Tablets")}
+          />
+          Tablets
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            onChange={() => handleCategoryChange("Accessories")}
+            checked={selectedCategories.includes("Accessories")}
+          />
+          Accesories
+        </label>
       </div>
     </div>
   );
