@@ -4,6 +4,12 @@ import { products } from "../../backend/db/products.js";
 import { CartContext } from "../../contexts/CartContext.js";
 import { WishlistContext } from "../../contexts/WishlistContext.js";
 import { useCategoryContext } from "../../contexts/CategoryContext.js";
+import {
+  sortProducts,
+  filterProductsByPrice,
+  applyCategoryFilter,
+} from "../../utils/productUtils.js";
+
 import "./ProductListing.css";
 
 const ProductListing = () => {
@@ -15,40 +21,29 @@ const ProductListing = () => {
   const [sortingOrder, setSortingOrder] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const sortProducts = (order) => {
+  const sortProductsHandler = (order) => {
     setSortingOrder(order);
-    if (order === "highToLow") {
-      const sortedProducts = [...techProducts].sort(
-        (a, b) => b.price - a.price
-      );
-      setTechProducts(sortedProducts);
-    } else if (order === "lowToHigh") {
-      const sortedProducts1 = [...techProducts].sort(
-        (a, b) => a.price - b.price
-      );
-      setTechProducts(sortedProducts1);
-    }
+    const sortedProducts = sortProducts(techProducts, order);
+    setTechProducts(sortedProducts);
   };
+
   const handleInput = (e) => {
     setValue(e.target.value);
-    const selectedPrice = parseInt(e.target.value, 10);
-    const filteredProducts = products.filter(
-      (product) => product.price <= selectedPrice
-    );
+    const filteredProducts = filterProductsByPrice(products, e.target.value);
     setTechProducts(filteredProducts);
   };
+
   const handleCategoryChange = (categoryName) => {
-    if (selectedCategories.includes(categoryName)) {
-      setSelectedCategories(
-        selectedCategories.filter((category) => category !== categoryName)
-      );
-    } else {
-      setSelectedCategories([...selectedCategories, categoryName]);
-    }
+    const updatedSelectedCategories = selectedCategories.includes(categoryName)
+      ? selectedCategories.filter((category) => category !== categoryName)
+      : [...selectedCategories, categoryName];
+
+    setSelectedCategories(updatedSelectedCategories);
   };
 
   useEffect(() => {
-    applyCategoryFilter(products);
+    const filteredProducts = applyCategoryFilter(products, selectedCategories);
+    setTechProducts(filteredProducts);
   }, [selectedCategories]);
 
   useEffect(() => {
@@ -62,17 +57,6 @@ const ProductListing = () => {
       );
     }
   }, [selectedCategory]);
-
-  const applyCategoryFilter = (productsArray) => {
-    if (selectedCategories.length === 0) {
-      setTechProducts(productsArray);
-    } else {
-      const filteredProducts = productsArray.filter((product) =>
-        selectedCategories.includes(product.category)
-      );
-      setTechProducts(filteredProducts);
-    }
-  };
 
   return (
     <div>
@@ -98,7 +82,7 @@ const ProductListing = () => {
           name="sorting"
           value="highToLow"
           checked={sortingOrder === "highToLow"}
-          onChange={() => sortProducts("highToLow")}
+          onChange={() => sortProductsHandler("highToLow")}
         />
         High to Low
       </label>
@@ -108,7 +92,7 @@ const ProductListing = () => {
           name="sorting"
           value="lowToHigh"
           checked={sortingOrder === "lowToHigh"}
-          onChange={() => sortProducts("lowToHigh")}
+          onChange={() => sortProductsHandler("lowToHigh")}
         />
         Low to High
       </label>
