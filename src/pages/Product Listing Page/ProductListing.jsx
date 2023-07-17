@@ -33,18 +33,33 @@ const ProductListing = () => {
     const filteredProducts = products.filter((product) => product.price <= selectedPrice);
     setTechProducts(filteredProducts);
   };
-
-  useEffect(() => {
-    if (selectedCategory) {
-      setSelectedCategories([selectedCategory]);
+  const handleCategoryChange = (categoryName) => {
+    if (selectedCategories.includes(categoryName)) {
+      setSelectedCategories(selectedCategories.filter((category) => category !== categoryName));
     } else {
-      setSelectedCategories([]);
+      setSelectedCategories([...selectedCategories, categoryName]);
     }
-  }, [selectedCategory]);
+  };
 
   useEffect(() => {
     applyCategoryFilter(products);
   }, [selectedCategories]);
+
+  // Remove this useEffect block to avoid the default selection of laptops
+  // useEffect(() => {
+  //   setSelectedCategories([]);
+  // }, []);
+
+  useEffect(() => {
+    // When navigating from the Home page, handle the selectedCategory properly
+    if (selectedCategory) {
+      setSelectedCategories((prevSelectedCategories) =>
+        prevSelectedCategories.includes(selectedCategory)
+          ? prevSelectedCategories.filter((category) => category !== selectedCategory)
+          : [...prevSelectedCategories, selectedCategory]
+      );
+    }
+  }, [selectedCategory]);
 
   const applyCategoryFilter = (productsArray) => {
     if (selectedCategories.length === 0) {
@@ -91,17 +106,17 @@ const ProductListing = () => {
 
       <div>
         <label>
-          <input
+        <input
             type="checkbox"
-            onChange={() => setSelectedCategories(['Smartphones'])}
+            onChange={() => handleCategoryChange('Smartphones')}
             checked={selectedCategories.includes('Smartphones')}
           />
           Smartphones
         </label>
         <label>
-          <input
+        <input
             type="checkbox"
-            onChange={() => setSelectedCategories(['Laptops'])}
+            onChange={() => handleCategoryChange('Laptops')}
             checked={selectedCategories.includes('Laptops')}
           />
           Laptops
