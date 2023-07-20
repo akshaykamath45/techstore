@@ -21,6 +21,7 @@ export const products = [
     brand: "Apple",
     image: "https://i.postimg.cc/fTMy77Xg/iphone-14-pro-max.jpg",
     rating: 4.8,
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -35,6 +36,7 @@ export const products = [
     brand: "Samsung",
     image: "https://i.postimg.cc/9MyX1xF0/s23-ultra.jpg",
     rating: 4.7,
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -49,6 +51,7 @@ export const products = [
     brand: "Google",
     image: "https://i.postimg.cc/VNxLqyw2/pixel-7-pro.jpg",
     rating: 3.5,
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -63,6 +66,7 @@ export const products = [
     brand: "Apple",
     image: "https://i.postimg.cc/c40CkN3S/mabook-air-m2.jpg",
     rating: 4.6,
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -77,6 +81,7 @@ export const products = [
     rating: 2.7,
     ram: "Up to 32GB",
     storage: "256GB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -91,6 +96,7 @@ export const products = [
     rating: 3.6,
     ram: "16GB",
     storage: "512GB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -105,6 +111,7 @@ export const products = [
     rating: 2.4,
     ram: "6GB",
     storage: "128GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -119,6 +126,7 @@ export const products = [
     rating: 3.6,
     ram: "16GB",
     storage: "512GB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -133,6 +141,7 @@ export const products = [
     rating: 2.5,
     ram: "N/A",
     storage: "8GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -147,6 +156,7 @@ export const products = [
     rating: 4.8,
     ram: "N/A",
     storage: "N/A",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -161,6 +171,7 @@ export const products = [
     rating: 3.7,
     ram: "N/A",
     storage: "N/A",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -175,6 +186,7 @@ export const products = [
     rating: 3.8,
     ram: "12GB",
     storage: "256GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -189,6 +201,7 @@ export const products = [
     rating: 1.9,
     ram: "Up to 32GB",
     storage: "1TB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -203,6 +216,7 @@ export const products = [
     rating: 4.8,
     ram: "8GB",
     storage: "128GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -217,6 +231,7 @@ export const products = [
     rating: 1.7,
     ram: "16GB",
     storage: "1TB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -231,6 +246,7 @@ export const products = [
     rating: 2.5,
     ram: "N/A",
     storage: "N/A",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -245,6 +261,7 @@ export const products = [
     rating: 4.6,
     ram: "6GB",
     storage: "128GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -259,6 +276,7 @@ export const products = [
     rating: 3.8,
     ram: "16GB",
     storage: "1TB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -273,6 +291,7 @@ export const products = [
     rating: 2.6,
     ram: "3GB",
     storage: "64GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -287,6 +306,7 @@ export const products = [
     rating: 4.9,
     ram: "N/A",
     storage: "N/A",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -301,6 +321,7 @@ export const products = [
     rating: 2.7,
     ram: "12GB",
     storage: "256GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -315,6 +336,7 @@ export const products = [
     rating: 3.8,
     ram: "N/A",
     storage: "N/A",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -329,6 +351,7 @@ export const products = [
     rating: 2.6,
     ram: "16GB",
     storage: "1TB SSD",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -343,6 +366,7 @@ export const products = [
     rating: 4.5,
     ram: "N/A",
     storage: "N/A",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -357,6 +381,7 @@ export const products = [
     rating: 4.7,
     ram: "8GB",
     storage: "256GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -371,6 +396,7 @@ export const products = [
     rating: 3.6,
     ram: "8GB",
     storage: "128GB",
+    cartValue:false
   },
   {
     _id: uuid(),
@@ -385,6 +411,7 @@ export const products = [
     rating: 2.7,
     ram: "16GB",
     storage: "512GB SSD",
+    cartValue:false
   },
 ];
 // Add more tablets, accessories, smartphones, and laptops with ratings here...

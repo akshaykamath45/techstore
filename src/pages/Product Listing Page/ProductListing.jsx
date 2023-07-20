@@ -1,16 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { products } from "../../backend/db/products.js";
 import { CartContext } from "../../contexts/CartContext.js";
 import { WishlistContext } from "../../contexts/WishlistContext.js";
 import { useCategoryContext } from "../../contexts/CategoryContext.js";
+import { toast } from "react-toastify";
 import {
   sortProducts,
   filterProductsByRating,
   applyCategoryFilter,
 } from "../..//utils/productUtils.js";
 import Sidebar from "../../components/Sidebar";
-
 import "./ProductListing.css";
 
 const ProductListing = () => {
@@ -21,6 +21,7 @@ const ProductListing = () => {
   const [value, setValue] = useState(0);
   const [sortingOrder, setSortingOrder] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const navigate = useNavigate();
 
   const sortProductsHandler = (order) => {
     setSortingOrder(order);
@@ -69,25 +70,75 @@ const ProductListing = () => {
         sortProductsHandler={sortProductsHandler}
         handleCategoryChange={handleCategoryChange}
       />
-
-      <h1>This is the Product Listing Page</h1>
       <div className="product-listing">
         {techProducts.map((product) => {
-          const handleCart = () => {
+          const handleCardClick = () => {
+            navigate(`/product/${product._id}`);
+          };
+
+          const handleCart = (event) => {
+            event.stopPropagation();
             handleAddToCart(product);
+            // getUpdatedCart();
           };
-          const handleWishlist = () => {
+          // const getUpdatedCart=async()=>{
+          //   try{
+
+          //     if(product.cartValue===true){
+          //       navigate("/cart");
+          //     } else{
+
+          //     toast.success("Added to cart", { autoClose: 500 });
+          //     }
+          //     console.log(product.cartValue)
+          //   }catch(e){
+          //     console.log(e)
+          //   }
+          // }
+
+          const handleWishlist = (event) => {
+            event.stopPropagation();
             handleAddToWishlist(product);
+            toast.success("Added to wishlist", { autoClose: 500 });
           };
+
           return (
-            <div key={product._id} className="product-card">
-             
-              <img src={product.image} alt={product.name} className='product-img'/>
-              <h4>{product.name}</h4>
-              <button onClick={handleCart}>Add to Cart</button>
-              <button onClick={handleWishlist}>Add to Wishlist</button>
-              <Link to={`/product/${product._id}`}>Visit Item</Link>
-              <hr />
+            <div
+              key={product._id}
+              className="product-card"
+              onClick={handleCardClick}
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="product-img"
+              />
+              <h4 className="product-name">{product.name}</h4>
+              <button onClick={handleCart} className="cart-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  fill="currentColor"
+                  className="bi bi-cart-plus-fill cart-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
+                </svg>
+                {product.cartValue === true ? "Go to Cart" : "Add to Cart"}
+              </button>
+              <button onClick={handleWishlist} className="wishlist-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="18"
+                  fill="currentColor"
+                  className="bi bi-heart heart-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                </svg>
+              </button>
             </div>
           );
         })}

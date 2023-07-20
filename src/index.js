@@ -6,12 +6,18 @@ import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CartContext, CartProvider } from "../src/contexts/CartContext";
 import { WishlistContext, WishlistProvider } from "./contexts/WishlistContext";
-import { useCategoryContext, CategoryProvider } from "./contexts/CategoryContext";
+import {
+  useCategoryContext,
+  CategoryProvider,
+} from "./contexts/CategoryContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Call make Server
 makeServer();
 export { CartContext };
 export { WishlistContext };
-export {useCategoryContext}
+export { useCategoryContext };
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -19,6 +25,7 @@ ReactDOM.render(
         <WishlistProvider>
           <CategoryProvider>
             <App />
+            <ToastContainer />
           </CategoryProvider>
         </WishlistProvider>
       </CartProvider>

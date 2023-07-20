@@ -6,7 +6,8 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const handleAddToCart = (product) => {
-    setCart([...cart, product]);
+    const selectedItem={...product,cartValue:true}
+    setCart([...cart, selectedItem]);
   };
 
   const handleDeleteFromCart = (productId) => {

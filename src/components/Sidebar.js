@@ -10,15 +10,20 @@ const Sidebar = ({
 }) => {
   return (
     <div className="sidebar">
+      <h1 className="title">Filter Products</h1>
+      <p className='ratings'>Filter by Ratings</p>
       <input
         type="range"
-        min="0"
+        min="1"
         max="5"
         step="0.1"
         value={value}
         onChange={handleInput}
+        className='filter-ratings'
       />
+
       <div className="slider-labels">
+
         <span>1</span>
         <span>2</span>
         <span>3</span>
@@ -27,6 +32,7 @@ const Sidebar = ({
       </div>
 
       <label>
+        <p className='sort-by-price'>Sort by Price</p>
         <input
           type="radio"
           name="sorting"
@@ -49,6 +55,7 @@ const Sidebar = ({
 
       <div>
         <label>
+          <p className='filter-by-category'>Filter by Category</p>
           <input
             type="checkbox"
             onChange={() => handleCategoryChange("Smartphones")}
