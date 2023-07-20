@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CartContext, CartProvider } from "../src/contexts/CartContext";
 import { WishlistContext, WishlistProvider } from "./contexts/WishlistContext";
+import { ProductContext,ProductProvider } from "./contexts/ProductContext";
 import {
   useCategoryContext,
   CategoryProvider,
@@ -24,7 +25,9 @@ ReactDOM.render(
       <CartProvider>
         <WishlistProvider>
           <CategoryProvider>
+            <ProductProvider>
             <App />
+            </ProductProvider>
             <ToastContainer />
           </CategoryProvider>
         </WishlistProvider>

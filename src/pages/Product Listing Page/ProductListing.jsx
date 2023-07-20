@@ -4,6 +4,7 @@ import { products } from "../../backend/db/products.js";
 import { CartContext } from "../../contexts/CartContext.js";
 import { WishlistContext } from "../../contexts/WishlistContext.js";
 import { useCategoryContext } from "../../contexts/CategoryContext.js";
+import { ProductContext } from "../../contexts/ProductContext.js";
 import { toast } from "react-toastify";
 import {
   sortProducts,
@@ -17,8 +18,8 @@ const ProductListing = () => {
   const { handleAddToCart } = useContext(CartContext);
   const { handleAddToWishlist } = useContext(WishlistContext);
   const { selectedCategory } = useCategoryContext();
-  const [techProducts, setTechProducts] = useState([]);
-  const [value, setValue] = useState(0);
+  const { techProducts, setTechProducts, resetFilters } = useContext(ProductContext);
+  const [value, setValue] = useState(5);
   const [sortingOrder, setSortingOrder] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const navigate = useNavigate();
@@ -43,6 +44,12 @@ const ProductListing = () => {
     setSelectedCategories(updatedSelectedCategories);
   };
 
+  const handleResetFilters = () => {
+    resetFilters();
+    setValue(5);
+    setSortingOrder(null);
+    setSelectedCategories([]);
+  };
   useEffect(() => {
     const filteredProducts = applyCategoryFilter(products, selectedCategories);
     setTechProducts(filteredProducts);
@@ -70,6 +77,9 @@ const ProductListing = () => {
         sortProductsHandler={sortProductsHandler}
         handleCategoryChange={handleCategoryChange}
       />
+       
+        <button onClick={handleResetFilters} className='reset-btn'>Reset Filters</button>
+
       <div className="product-listing">
         {techProducts.map((product) => {
           const handleCardClick = () => {
