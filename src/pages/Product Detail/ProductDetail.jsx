@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../backend/db/products";
+import { ProductContext } from "../../contexts/ProductContext";
+import { CartContext } from "../../contexts/CartContext";
 const ProductDetail = () => {
   const { productId } = useParams();
+  const { techProducts } = useContext(ProductContext);
+  const { handleAddToCart } = useContext(CartContext);
   console.log(productId);
-  const selectedProduct = products.find(({ _id }) => _id === productId);
+  const selectedProduct = techProducts.find(({_id}) => _id === productId);
   console.log(selectedProduct);
+
+  const handleCartClick = () => {
+    handleAddToCart(selectedProduct);
+  }
   return (
     <div>
       <h1>This is the Product Detail Page</h1>
@@ -15,8 +22,10 @@ const ProductDetail = () => {
       <p>{selectedProduct.price}</p>
       <p>{selectedProduct.brand}</p>
       <p>{selectedProduct.category}</p>
+      <button onClick={handleCartClick}>Add to Cart</button>
     </div>
   );
 };
 
 export default ProductDetail;
+
