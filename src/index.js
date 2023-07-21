@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 makeServer();
 export { CartContext };
 export { WishlistContext };
+export {ProductContext}
 export { useCategoryContext };
 
 ReactDOM.render(

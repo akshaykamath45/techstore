@@ -53,7 +53,7 @@ const ProductListing = () => {
   useEffect(() => {
     const filteredProducts = applyCategoryFilter(products, selectedCategories);
     setTechProducts(filteredProducts);
-  }, [selectedCategories]);
+  }, [selectedCategories,setTechProducts]);
 
   useEffect(() => {
     if (selectedCategory) {

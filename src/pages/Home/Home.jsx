@@ -1,6 +1,6 @@
 import React from "react";
 import { categories } from "../../backend/db/categories.js";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCategoryContext } from "../../contexts/CategoryContext";
 import "./Home.css";
 
@@ -25,7 +25,7 @@ const Home = () => {
         </h2>
         <img
           src="https://i.postimg.cc/V6z0tKgJ/lannding-page-img.jpg"
-          alt="landing-page-img"
+          alt="landing-page"
           className="landing-img"
         />
         <button onClick={exploreProducts} className="explore-products">
@@ -45,7 +45,7 @@ const Home = () => {
               <h2 className="category-name">{category.categoryName}</h2>
               <img
                 src={category.image}
-                alt="category-image"
+                alt="category"
                 className="category-image"
               />
             </div>
