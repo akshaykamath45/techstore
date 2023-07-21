@@ -10,13 +10,13 @@ body {
   flex-wrap: wrap;
   gap: 15px;
   margin-left: 255px;
-  margin-top:115px;
+  margin-top:135px;
 }
 .reset-btn{
 
-  position: absolute;
-  right:50px;
-  top:85px;
+  position: fixed;
+  left:50px;
+  top:125px;
   background-color: rgb(167, 208, 238);
   color:black;
   border-radius:15px;

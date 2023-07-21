@@ -1,8 +1,8 @@
 .sidebar {
   position: fixed;
-  top: 120px; /* Adjust the top value to set the distance from the top of the page */
+  top: 140px;
   width: 240px;
-  height: calc(90vh - 140px); /* Adjust the height as needed */
+  height: calc(95vh - 140px); 
   margin-left: 20px;
   border-radius: 15px;
   padding: 10px;
