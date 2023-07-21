@@ -89,23 +89,20 @@ const ProductListing = () => {
           const handleCart = (event) => {
             event.stopPropagation();
             handleAddToCart(product);
-            // getUpdatedCart();
+            const updatedTechProducts = techProducts.map((item) => {
+              if (item._id === product._id) {
+                return { ...item, cartValue: true };
+              }
+              return item;
+            });
+            setTechProducts(updatedTechProducts);
+          
+            if (product.cartValue === true) {
+              navigate("/cart");
+            } else {
+              toast.success("Added to cart", { autoClose: 500 });
+            }
           };
-          // const getUpdatedCart=async()=>{
-          //   try{
-
-          //     if(product.cartValue===true){
-          //       navigate("/cart");
-          //     } else{
-
-          //     toast.success("Added to cart", { autoClose: 500 });
-          //     }
-          //     console.log(product.cartValue)
-          //   }catch(e){
-          //     console.log(e)
-          //   }
-          // }
-
           const handleWishlist = (event) => {
             event.stopPropagation();
             handleAddToWishlist(product);
@@ -124,7 +121,10 @@ const ProductListing = () => {
                 className="product-img"
               />
               <h4 className="product-name">{product.name}</h4>
-              <button onClick={handleCart} className="cart-btn">
+              <button onClick={handleCart} className="cart-btn"   style={{
+              backgroundColor: product.cartValue ? "rgb(255, 98, 20)" : "",
+              color: product.cartValue ? "black" : "",
+            }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
