@@ -1,0 +1,90 @@
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+  background-color: #000000;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.landing-img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.landing-title {
+  color: white;
+  font-size: 36px;
+  margin-top: 80px;
+}
+
+.caption {
+  color: white;
+  font-size: 24px;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.explore-products {
+  background-color: rgb(167, 205, 228);
+  color: black;
+  font-weight: bolder;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 14px;
+  margin-top: 35px;
+  cursor: pointer;
+}
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.category-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-card {
+    width: 400px;
+    height: 350px;
+    border-radius: 8px;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgb(168, 207, 229);
+    transition: transform 0.3s ease; 
+  }
+  
+  .category-card:hover {
+    transform: scale(1.1); 
+  }
+  
+  .category-name {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .category-image {
+    width: 100%;
+    height: 85%;
+    border-radius: 0px 0px 8px 8px;
+  }
+  
