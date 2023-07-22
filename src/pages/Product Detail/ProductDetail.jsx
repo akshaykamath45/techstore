@@ -7,15 +7,21 @@ import { toast } from "react-toastify";
 import "./ProductDetail.css";
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { techProducts,setTechProducts} = useContext(ProductContext);
-  const { handleAddToCart } = useContext(CartContext);
+  const { techProducts, setTechProducts } = useContext(ProductContext);
+  const { handleAddToCart, cart } = useContext(CartContext);
   const { handleAddToWishlist } = useContext(WishlistContext);
   console.log(productId);
   const selectedProduct = techProducts.find(({ _id }) => _id === productId);
   console.log(selectedProduct);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleCartClick = () => {
-    handleAddToCart(selectedProduct);
+    const existingItem = cart.find((item) => item._id === selectedProduct._id);
+
+    if (existingItem) {
+    } else {
+      handleAddToCart(selectedProduct);
+      toast.success("Added to cart", { autoClose: 500 });
+    }
     const updatedTechProducts = techProducts.map((item) => {
       if (item._id === selectedProduct._id) {
         return { ...item, cartValue: true };
@@ -23,13 +29,9 @@ const ProductDetail = () => {
       return item;
     });
     setTechProducts(updatedTechProducts);
-  
     if (selectedProduct.cartValue === true) {
       navigate("/cart");
-    } else {
-      toast.success("Added to cart", { autoClose: 500 });
     }
-
   };
 
   const handleWishlistClick = () => {
@@ -69,11 +71,17 @@ const ProductDetail = () => {
           <b>Rating:</b> {selectedProduct.rating}
         </p>
         <div className="btns">
-          <button onClick={handleCartClick} className="product-cart-btn" style={{
-              backgroundColor: selectedProduct.cartValue ? "rgb(255, 98, 20)" : "",
+          <button
+            onClick={handleCartClick}
+            className="product-cart-btn"
+            style={{
+              backgroundColor: selectedProduct.cartValue
+                ? "rgb(255, 98, 20)"
+                : "",
               color: selectedProduct.cartValue ? "black" : "",
-            }}>
-            {selectedProduct.cartValue===true ? "Go to Cart" : "Add to Cart"}
+            }}
+          >
+            {selectedProduct.cartValue === true ? "Go to Cart" : "Add to Cart"}
           </button>
           <button
             onClick={handleWishlistClick}
