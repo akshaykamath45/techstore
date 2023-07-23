@@ -55,7 +55,7 @@ const ProductListing = () => {
   useEffect(() => {
     const filteredProducts = applyCategoryFilter(products, selectedCategories);
     setTechProducts(filteredProducts);
-  }, [selectedCategories, setTechProducts]);
+  }, [selectedCategories]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -70,13 +70,12 @@ const ProductListing = () => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    // Set the cartValue for each product based on its presence in the cart
     const updatedTechProducts = techProducts.map((product) => ({
       ...product,
       cartValue: !!cart.find((item) => item._id === product._id),
     }));
     setTechProducts(updatedTechProducts);
-  }, [cart, techProducts]);
+  }, [cart]);
 
 
   const handleCardClick = (product) => {
