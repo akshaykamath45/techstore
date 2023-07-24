@@ -17,13 +17,44 @@
     height:100px;
 
   }
-  .nav-bar-item {
-    text-decoration: none;
-    color: black;
-    font-size: large;
- 
-  }
-  
+/* CSS for cart and wishlist counts */
+.nav-bar-item {
+  text-decoration: none;
+  color: black;
+  font-size: xx-large;
+  position: relative;
+}
+
+.count-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: rgb(0, 0, 0); 
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left:10px
+}
+
+
+.wishlist-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left:10px
+}
+
   .search-bar {
     width: 60vw;
     padding: 10px 15px;
