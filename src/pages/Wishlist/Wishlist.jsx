@@ -6,7 +6,6 @@ const Wishlist = () => {
   const { handleDeleteFromWishlist } = useContext(WishlistContext);
   return (
     <div>
-      <h1>This is the Wishlist Page</h1>
       <h2>Items in the Wishlist : {wishlist.length}</h2>
       {wishlist.map((item) => {
         return (

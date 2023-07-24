@@ -6,7 +6,14 @@ export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
 
   const handleAddToWishlist = (product) => {
-    setWishlist([...wishlist, product]);
+    const existingItem = wishlist.find((item) => item._id === product._id);
+
+    if (existingItem) {
+      const deleteProduct = wishlist.filter((item) => item !== existingItem);
+      setWishlist(deleteProduct);
+    } else {
+      setWishlist([...wishlist, { ...product, quantity: 1 }]);
+    }
   };
 
   const handleDeleteFromWishlist = (productId) => {

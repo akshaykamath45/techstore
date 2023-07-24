@@ -76,6 +76,7 @@ body {
 }
 .heart-icon:hover{
   color:red;
+
 }
 input[type="range"] {
   width: 170px;

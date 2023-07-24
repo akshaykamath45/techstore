@@ -16,7 +16,8 @@ import "./ProductListing.css";
 
 const ProductListing = () => {
   const { handleAddToCart, cart } = useContext(CartContext); // Get the cart from the context
-  const { handleAddToWishlist } = useContext(WishlistContext);
+  const { handleAddToWishlist, wishlist, handleDeleteFromWishlist } =
+    useContext(WishlistContext);
   const { selectedCategory } = useCategoryContext();
   const { techProducts, setTechProducts, resetFilters } =
     useContext(ProductContext);
@@ -55,7 +56,7 @@ const ProductListing = () => {
   useEffect(() => {
     const filteredProducts = applyCategoryFilter(products, selectedCategories);
     setTechProducts(filteredProducts);
-  }, [selectedCategories,setTechProducts]);
+  }, [selectedCategories, setTechProducts]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -74,11 +75,10 @@ const ProductListing = () => {
     const updatedTechProducts = filteredProducts.map((product) => ({
       ...product,
       cartValue: !!cart.find((item) => item._id === product._id),
+      wishlistValue: !!wishlist.find((item) => item._id === product._id),
     }));
-
     setTechProducts(updatedTechProducts);
-  }, [selectedCategories, cart, setTechProducts]);
-
+  }, [selectedCategories, cart, wishlist, setTechProducts]);
 
   const handleCardClick = (product) => {
     navigate(`/product/${product._id}`);
@@ -87,13 +87,11 @@ const ProductListing = () => {
   const handleCart = (event, product) => {
     event.stopPropagation();
     const existingItem = cart.find((item) => item._id === product._id);
-
     if (existingItem) {
     } else {
       handleAddToCart(product);
       toast.success("Added to cart", { autoClose: 1000 });
     }
-
     const updatedTechProducts = techProducts.map((item) => {
       if (item._id === product._id) {
         return { ...item, cartValue: true };
@@ -109,8 +107,22 @@ const ProductListing = () => {
 
   const handleWishlist = (event, product) => {
     event.stopPropagation();
-    handleAddToWishlist(product);
-    toast.success("Added to wishlist", { autoClose: 500 });
+    const existingItem = wishlist.find((item) => item._id === product._id);
+
+    if (existingItem) {
+      handleDeleteFromWishlist(product._id);
+    } else {
+      handleAddToWishlist(product);
+      toast.success("Added to wishlist", { autoClose: 500 });
+    }
+    const updatedTechProducts = techProducts.map((item) => {
+      if (item._id === product._id) {
+        return { ...item, wishlistValue: !existingItem };
+      }
+      return item;
+    });
+
+    setTechProducts(updatedTechProducts);
   };
 
   return (
@@ -167,13 +179,18 @@ const ProductListing = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="18"
+                width="16"
+                height="16"
                 fill="currentColor"
-                className="bi bi-heart heart-icon"
+                class="bi bi-heart-fill"
+                className="heart-icon"
                 viewBox="0 0 16 16"
+                style={{ color: product.wishlistValue ? "red" : "" }}
               >
-                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                <path
+                  fill-rule="evenodd"
+                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                />
               </svg>
             </button>
           </div>
