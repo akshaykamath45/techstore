@@ -42,14 +42,14 @@ const Cart = () => {
                 <p>Price: {item.price}</p>
                 <div className="quantity-container">
                   <button
-                    onClick={() => handleDecreaseQuantity(item._id)}
+                    onClick={(event) => handleDecreaseQuantity(event,item._id)}
                     className="cart-quantity-btn"
                   >
                     -
                   </button>
                   <p className="item-quantity">{item.quantity}</p>
                   <button
-                    onClick={() => handleIncreaseQuantity(item._id)}
+                    onClick={(event) => handleIncreaseQuantity(event,item._id)}
                     className="cart-quantity-btn"
                   >
                     +

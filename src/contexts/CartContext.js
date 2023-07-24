@@ -35,7 +35,8 @@ export const CartProvider = ({ children }) => {
     setCart(updatedCartWithCartValue);
   };
 
-  const handleIncreaseQuantity = (productId) => {
+  const handleIncreaseQuantity = (event,productId) => {
+    event.stopPropagation();
     setCart((prevCart) =>
       prevCart.map((item) =>
         item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
@@ -43,7 +44,8 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const handleDecreaseQuantity = (productId) => {
+  const handleDecreaseQuantity = (event,productId) => {
+    event.stopPropagation();
     setCart((prevCart) =>
       prevCart.map((item) =>
         item._id === productId
