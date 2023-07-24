@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState,useEffect} from "react";
+import {toast} from "react-toastify"
 
 export const CartContext = createContext();
 
@@ -44,22 +44,32 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const handleDecreaseQuantity = (event,productId) => {
+  const handleDecreaseQuantity = (event, productId) => {
     event.stopPropagation();
     setCart((prevCart) =>
-      prevCart.map((item) =>
-        item._id === productId
-          ? { ...item, quantity: item.quantity > 0 ? item.quantity - 1 : 0 }
-          : item
-      )
+      prevCart.map((item) => {
+        if (item._id === productId) {
+          if (item.quantity === 1) {
+            toast.error("Quantity can't be less than 1",{autoClose:500});
+            return item; 
+          } else {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+        } else {
+          return item;
+        }
+      })
     );
   };
-
+  
+  useEffect(() => {
+    toast.update();
+  }, [cart]);
+  
   return (
     <CartContext.Provider
       value={{
         cart,
-        setCart,
         handleAddToCart,
         handleDeleteFromCart,
         handleIncreaseQuantity,
