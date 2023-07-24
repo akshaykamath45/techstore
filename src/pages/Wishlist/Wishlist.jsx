@@ -16,7 +16,7 @@ const Wishlist = () => {
           <img src={emptyWishlist} alt="wishlist-empty" className="empty-wishlist-image" />
         </div>
       ) : (
-        <div>
+        <div className='items-container'>
           <h2 className="wishlist-items">Items in Wishlist: {wishlist.length}</h2>
           <div className="wishlist-page">
             {wishlist.map((item) => {

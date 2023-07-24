@@ -1,13 +1,15 @@
-.wishlist-container{
-    margin-top: 200px;
-    padding: 10px;
+.wishlist-container {
+  margin-top: 200px;
+  padding: 10px;
 }
 .wishlist-items {
-  margin-top: 165px;
   text-align: center;
 }
+.items-container {
+  margin-top: -90px;
+}
 .wishlist-page {
-  margin: 10px auto;
+  margin: 0px auto;
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
@@ -43,12 +45,10 @@
   left: 10px;
 }
 .empty-wishlist {
-    width: 350px;
-    margin: 30px auto;
-    text-align: center;
-
-  }
-  .empty-wishlist-image {
-    width: 100%;
-  }
-  
+  width: 350px;
+  margin: 30px auto;
+  text-align: center;
+}
+.empty-wishlist-image {
+  width: 100%;
+}
