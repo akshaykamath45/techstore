@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import "./Cart.css";
 import emptyCart from "../../assets/emptyCart.svg";
+import { useNavigate } from "react-router";
 const Cart = () => {
   const {
     cart,
@@ -10,6 +11,11 @@ const Cart = () => {
     handleDecreaseQuantity,
   } = useContext(CartContext);
 
+  const navigate = useNavigate();
+
+  const handleCartItemClicked = (productId) => {
+    navigate(`/product/${productId}`);
+  };
   return (
     <div className="cart-container">
       {cart.length === 0 ? (
@@ -21,7 +27,11 @@ const Cart = () => {
         <div className="cart-items">
           <h2>Cart Items</h2>
           {cart.map((item) => (
-            <div key={item._id} className="cart-item">
+            <div
+              key={item._id}
+              className="cart-item"
+              onClick={() => handleCartItemClicked(item._id)}
+            >
               <img
                 src={item.image}
                 alt={item.name}
@@ -46,7 +56,7 @@ const Cart = () => {
                   </button>
                 </div>
                 <button
-                  onClick={() => handleDeleteFromCart(item._id)}
+                  onClick={(event) => handleDeleteFromCart(event, item._id)}
                   className="delete-cart-btn"
                 >
                   Delete from Cart

@@ -16,7 +16,8 @@ export const WishlistProvider = ({ children }) => {
     }
   };
 
-  const handleDeleteFromWishlist = (productId) => {
+  const handleDeleteFromWishlist = (event,productId) => {
+    event.stopPropagation();
     const deleteProduct = wishlist.filter(
       (product) => product._id !== productId
     );

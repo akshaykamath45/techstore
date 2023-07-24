@@ -27,6 +27,7 @@ body {
   border: 1px solid lightgray;
   padding: 10px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .cart-item-image {

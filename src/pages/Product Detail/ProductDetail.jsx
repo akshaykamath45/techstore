@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../../contexts/ProductContext";
 import { CartContext } from "../../contexts/CartContext";
@@ -8,8 +8,10 @@ import "./ProductDetail.css";
 const ProductDetail = () => {
   const { productId } = useParams();
   const { techProducts, setTechProducts } = useContext(ProductContext);
-  const { handleAddToCart, cart } = useContext(CartContext);
-  const { handleAddToWishlist,wishlist,handleDeleteFromWishlist } = useContext(WishlistContext);
+  const { handleAddToCart, cart, handleDeleteFromCart } =
+    useContext(CartContext);
+  const { handleAddToWishlist, wishlist, handleDeleteFromWishlist } =
+    useContext(WishlistContext);
   console.log(productId);
   const selectedProduct = techProducts.find(({ _id }) => _id === productId);
   console.log(selectedProduct);
@@ -35,32 +37,74 @@ const ProductDetail = () => {
   };
 
   const handleWishlistClick = () => {
-    const existingItem = wishlist.find((item) => item._id === selectedProduct._id);
-  
+    const existingItem = wishlist.find(
+      (item) => item._id === selectedProduct._id
+    );
     if (existingItem) {
-      // If the product is already in the wishlist, remove it
-      // handleDeleteFromWishlist(selectedProduct._id);
-      // toast.success("Removed from wishlist", { autoClose: 500 });
     } else {
-      // If the product is not in the wishlist, add it
       handleAddToWishlist(selectedProduct);
       toast.success("Added to wishlist", { autoClose: 500 });
     }
-  
-    // Update the wishlistValue for the product in techProducts state
     const updatedTechProducts = techProducts.map((item) => {
       if (item._id === selectedProduct._id) {
         return { ...item, wishlistValue: !existingItem };
       }
       return item;
     });
-  
+
     setTechProducts(updatedTechProducts);
-  
+
     if (selectedProduct.wishlistValue === true) {
       navigate("/wishlist");
     }
   };
+
+  const updateProductState = () => {
+    const existingCartItem = cart.find((item) => item._id === selectedProduct._id);
+    if (existingCartItem) {
+      setTechProducts((prevProducts) => {
+        return prevProducts.map((item) => {
+          if (item._id === selectedProduct._id) {
+            return { ...item, cartValue: true };
+          }
+          return item;
+        });
+      });
+    } else {
+      setTechProducts((prevProducts) => {
+        return prevProducts.map((item) => {
+          if (item._id === selectedProduct._id) {
+            return { ...item, cartValue: false };
+          }
+          return item;
+        });
+      });
+    }
+    const existingWishlistItem = wishlist.find((item) => item._id === selectedProduct._id);
+    if (existingWishlistItem) {
+      setTechProducts((prevProducts) => {
+        return prevProducts.map((item) => {
+          if (item._id === selectedProduct._id) {
+            return { ...item, wishlistValue: true };
+          }
+          return item;
+        });
+      });
+    } else {
+      setTechProducts((prevProducts) => {
+        return prevProducts.map((item) => {
+          if (item._id === selectedProduct._id) {
+            return { ...item, wishlistValue: false };
+          }
+          return item;
+        });
+      });
+    }
+  };
+
+  useEffect(() => {
+    updateProductState();
+  }, [cart, wishlist, selectedProduct, setTechProducts]);
   return (
     <div className="product-details">
       <div className="product-img-div">
@@ -117,7 +161,9 @@ const ProductDetail = () => {
             }}
             className="product-wishlist-btn"
           >
-                  {selectedProduct.wishlistValue === true ? "Go to Wishlist" : "Add to Wishlist"}
+            {selectedProduct.wishlistValue === true
+              ? "Go to Wishlist"
+              : "Add to Wishlist"}
           </button>
         </div>
       </div>

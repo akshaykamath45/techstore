@@ -23,9 +23,16 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const handleDeleteFromCart = (productId) => {
+  const handleDeleteFromCart = (event,productId) => {
+    event.stopPropagation();
     const updatedCart = cart.filter((product) => product._id !== productId);
-    setCart(updatedCart);
+
+    const updatedCartWithCartValue = updatedCart.map((product) => ({
+      ...product,
+      cartValue: false,
+    }));
+
+    setCart(updatedCartWithCartValue);
   };
 
   const handleIncreaseQuantity = (productId) => {
@@ -50,6 +57,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
+        setCart,
         handleAddToCart,
         handleDeleteFromCart,
         handleIncreaseQuantity,
