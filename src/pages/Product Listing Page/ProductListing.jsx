@@ -108,7 +108,7 @@ const ProductListing = () => {
     event.stopPropagation();
     const existingItem = wishlist.find((item) => item._id === product._id);
     if (existingItem) {
-      handleDeleteFromWishlist(product._id);
+      handleDeleteFromWishlist(event,product._id);
       toast.success("Removed from Wishlist", { autoClose: 500 });
     } else {
       handleAddToWishlist(product);
