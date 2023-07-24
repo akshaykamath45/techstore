@@ -90,7 +90,7 @@ const ProductListing = () => {
     if (existingItem) {
     } else {
       handleAddToCart(product);
-      toast.success("Added to cart", { autoClose: 1000 });
+      toast.success("Added to Cart", { autoClose: 500 });
     }
     const updatedTechProducts = techProducts.map((item) => {
       if (item._id === product._id) {
@@ -99,7 +99,6 @@ const ProductListing = () => {
       return item;
     });
     setTechProducts(updatedTechProducts);
-
     if (product.cartValue === true) {
       navigate("/cart");
     }
@@ -108,12 +107,12 @@ const ProductListing = () => {
   const handleWishlist = (event, product) => {
     event.stopPropagation();
     const existingItem = wishlist.find((item) => item._id === product._id);
-
     if (existingItem) {
       handleDeleteFromWishlist(product._id);
+      toast.success("Removed from Wishlist", { autoClose: 500 });
     } else {
       handleAddToWishlist(product);
-      toast.success("Added to wishlist", { autoClose: 500 });
+      toast.success("Added to Wishlist", { autoClose: 500 });
     }
     const updatedTechProducts = techProducts.map((item) => {
       if (item._id === product._id) {
