@@ -55,7 +55,7 @@ const ProductListing = () => {
   useEffect(() => {
     const filteredProducts = applyCategoryFilter(products, selectedCategories);
     setTechProducts(filteredProducts);
-  }, [selectedCategories]);
+  }, [selectedCategories,setTechProducts]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -70,12 +70,14 @@ const ProductListing = () => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    const updatedTechProducts = techProducts.map((product) => ({
+    const filteredProducts = applyCategoryFilter(products, selectedCategories);
+    const updatedTechProducts = filteredProducts.map((product) => ({
       ...product,
       cartValue: !!cart.find((item) => item._id === product._id),
     }));
+
     setTechProducts(updatedTechProducts);
-  }, [cart]);
+  }, [selectedCategories, cart, setTechProducts]);
 
 
   const handleCardClick = (product) => {
