@@ -6,7 +6,7 @@ import { WishlistContext } from "../../contexts/WishlistContext.js";
 import { useCategoryContext } from "../../contexts/CategoryContext.js";
 import { ProductContext } from "../../contexts/ProductContext.js";
 import { toast } from "react-toastify";
-import emptyProducts from "../../assets/emptyProducts.svg"
+import emptyProducts from "../../assets/emptyProducts.svg";
 import {
   sortProducts,
   filterProductsByRating,
@@ -139,7 +139,10 @@ const ProductListing = () => {
       <button onClick={handleResetFilters} className="reset-btn">
         Reset Filters
       </button>
-
+      <div classname="product-listing-container"></div>
+      <h3 className="showing-items">
+        Showing {techProducts.length} out of {products.length} items
+      </h3>
       <div className="product-listing">
         {techProducts.map((product) => (
           <div
@@ -147,28 +150,28 @@ const ProductListing = () => {
             className="product-card"
             onClick={() => handleCardClick(product)}
           >
-          <div className='product-image-items'>
-            <img
-              src={product.image}
-              alt={product.name}
-              className="product-img"
-            />
-            <p className="product-ratings">
-              {product.rating}{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-                className='star-icon'
-              >
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-              </svg>
-            </p>
+            <div className="product-image-items">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="product-img"
+              />
+              <p className="product-ratings">
+                {product.rating}{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                  className="star-icon"
+                >
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+              </p>
             </div>
-          
+
             <h4 className="product-name">{product.name}</h4>
             <p className="discounted-price">
               ₹ {product.discountedPrice}{" "}
@@ -216,11 +219,16 @@ const ProductListing = () => {
             </button>
           </div>
         ))}
-        {techProducts.length===0 && 
-        <div className='empty-products'>
-          <h1>No products to show</h1>
-          <img src={emptyProducts} alt="empty-product" className='empty-product-image' />
-          </div>}
+        {techProducts.length === 0 && (
+          <div className="empty-products">
+            <h1>No products to show</h1>
+            <img
+              src={emptyProducts}
+              alt="empty-product"
+              className="empty-product-image"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
