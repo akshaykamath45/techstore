@@ -215,6 +215,10 @@ const ProductListing = () => {
             </button>
           </div>
         ))}
+        {techProducts.length===0 && 
+        <div className='empty-products'>
+          <h1></h1>
+          </div>}
       </div>
     </div>
   );
