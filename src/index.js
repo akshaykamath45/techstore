@@ -29,7 +29,7 @@ ReactDOM.render(
             <ProductProvider>
             <App />
             </ProductProvider>
-            <ToastContainer />
+            <ToastContainer theme="dark" position="top-center"/>
           </CategoryProvider>
         </WishlistProvider>
       </CartProvider>
