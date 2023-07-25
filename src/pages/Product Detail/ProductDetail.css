@@ -19,7 +19,11 @@
     border-radius: 14px;
     height: 350px;
   }
-
+  .star-icon-product-detail{
+    color: rgb(255, 219, 14);
+    margin-left: 6px;
+    margin-bottom: -2px;
+  }
   .btns{
     display: flex;
     gap:15px;

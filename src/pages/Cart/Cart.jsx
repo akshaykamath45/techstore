@@ -44,7 +44,7 @@ const Cart = () => {
               />
               <div className="cart-item-details">
                 <p>{item.name}</p>
-                <p>Price: {item.price}</p>
+                <p>Price: ₹ {item.price}</p>
                 <div className="quantity-container">
                   <button
                     onClick={(event) => handleDecreaseQuantity(event, item._id)}

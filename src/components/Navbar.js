@@ -50,12 +50,18 @@ const Navbar = ({ techProducts }) => {
             filteredProducts.map((product) => (
               <div
                 key={product.id}
-                onClick={() => handleProductClick(product._id)}
+                onClick={() => handleProductClick(product._id)
+   
+                }
+                className='search-result-card'
               >
+                <img src={product.image} alt='product-image' className='navbar-img'></img>
                 <h3 style={{ color: "black", cursor: "pointer" }}>
                   {product.name}
                 </h3>
+      
               </div>
+              
             ))
           ) : (
             <div>
