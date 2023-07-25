@@ -65,7 +65,7 @@ const Navbar = ({ techProducts }) => {
             ))
           ) : (
             <div>
-              <h3 style={{ color: "black" }}>No items to show</h3>
+              <h3 style={{ color: "black",marginLeft:"8px"}}>No items to show</h3>
             </div>
           )}
         </div>
