@@ -119,3 +119,13 @@ input[type="range"] {
   padding: 0 10px;
   font-size: 12px;
 }
+
+.empty-products {
+  width: 350px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.empty-product-image {
+  width: 100%;
+}

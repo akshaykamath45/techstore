@@ -6,6 +6,7 @@ import { WishlistContext } from "../../contexts/WishlistContext.js";
 import { useCategoryContext } from "../../contexts/CategoryContext.js";
 import { ProductContext } from "../../contexts/ProductContext.js";
 import { toast } from "react-toastify";
+import emptyProducts from "../../assets/emptyProducts.svg"
 import {
   sortProducts,
   filterProductsByRating,
@@ -217,7 +218,8 @@ const ProductListing = () => {
         ))}
         {techProducts.length===0 && 
         <div className='empty-products'>
-          <h1></h1>
+          <h1>No products to show</h1>
+          <img src={emptyProducts} alt="empty-product" className='empty-product-image' />
           </div>}
       </div>
     </div>
