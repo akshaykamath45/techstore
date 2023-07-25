@@ -17,10 +17,11 @@ const Cart = () => {
     navigate(`/product/${productId}`);
   };
   const price = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const discount = cart.reduce(
+  const discountedPrice = cart.reduce(
     (acc, item) => acc + item.discountedPrice * item.quantity,
     0
   );
+  const discount=(price-discountedPrice).toFixed(2);
   const totalAmount = (price - discount).toFixed(2);
   return (
     <div className="cart-container">
@@ -87,11 +88,9 @@ const Cart = () => {
           <p>
             Discount{" "}
             <span>
+              - 
               ₹{" "}
-              {cart.reduce(
-                (acc, item) => acc + item.discountedPrice * item.quantity,
-                0
-              )}{" "}
+              {discount}{" "}
             </span>
           </p>
           <p>
