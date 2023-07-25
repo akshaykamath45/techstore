@@ -16,6 +16,12 @@ const Cart = () => {
   const handleCartItemClicked = (productId) => {
     navigate(`/product/${productId}`);
   };
+  const price = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const discount = cart.reduce(
+    (acc, item) => acc + item.discountedPrice * item.quantity,
+    0
+  );
+  const totalAmount = (price - discount).toFixed(2);
   return (
     <div className="cart-container">
       {cart.length === 0 ? (
@@ -25,7 +31,6 @@ const Cart = () => {
         </div>
       ) : (
         <div className="cart-items">
-          <h2>Cart Items</h2>
           {cart.map((item) => (
             <div
               key={item._id}
@@ -42,14 +47,14 @@ const Cart = () => {
                 <p>Price: {item.price}</p>
                 <div className="quantity-container">
                   <button
-                    onClick={(event) => handleDecreaseQuantity(event,item._id)}
+                    onClick={(event) => handleDecreaseQuantity(event, item._id)}
                     className="cart-quantity-btn"
                   >
                     -
                   </button>
                   <p className="item-quantity">{item.quantity}</p>
                   <button
-                    onClick={(event) => handleIncreaseQuantity(event,item._id)}
+                    onClick={(event) => handleIncreaseQuantity(event, item._id)}
                     className="cart-quantity-btn"
                   >
                     +
@@ -64,12 +69,43 @@ const Cart = () => {
               </div>
             </div>
           ))}
-          <div className="total-amount">
-            <h2>Total Amount</h2>
-            <p>
-              ${cart.reduce((acc, item) => acc + item.price * item.quantity, 0)}
-            </p>
-          </div>
+        </div>
+      )}
+      {cart.length > 0 && (
+        <div className="total-amount">
+          <hr />
+          <h2>Price Details</h2>
+          <hr />
+          <p>
+            Price ({cart.length} items){" "}
+            <span className="align-items-right">
+              {" "}
+              ₹{" "}
+              {cart.reduce((acc, item) => acc + item.price * item.quantity, 0)}
+            </span>
+          </p>
+          <p>
+            Discount{" "}
+            <span>
+              ₹{" "}
+              {cart.reduce(
+                (acc, item) => acc + item.discountedPrice * item.quantity,
+                0
+              )}{" "}
+            </span>
+          </p>
+          <p>
+            Delivery Charges <span>FREE</span>
+          </p>
+          <hr />
+          <h4>
+            Total Amount <span>₹ {totalAmount}</span>
+          </h4>
+          <hr />
+          <p className="save-discount">
+            You will save ₹ {discount} on this order
+          </p>
+          <button className="checkout-btn">Checkout</button>
         </div>
       )}
     </div>
