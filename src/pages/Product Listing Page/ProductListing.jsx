@@ -16,7 +16,7 @@ import Sidebar from "../../components/Sidebar";
 import "./ProductListing.css";
 
 const ProductListing = () => {
-  const { handleAddToCart, cart } = useContext(CartContext); 
+  const { handleAddToCart, cart } = useContext(CartContext);
   const { handleAddToWishlist, wishlist, handleDeleteFromWishlist } =
     useContext(WishlistContext);
   const { selectedCategory } = useCategoryContext();
@@ -62,7 +62,7 @@ const ProductListing = () => {
     const filteredByRating = filterProductsByRating(filteredByCategory, value);
 
     setTechProducts(filteredByRating);
-  }, [selectedCategories, value]);
+  }, [selectedCategories, value, setTechProducts]);
 
   useEffect(() => {
     if (selectedCategory) {
