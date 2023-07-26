@@ -45,6 +45,7 @@
 }
 .slider-labels span{
     padding:0px 6px;
+    margin-left:2px;
  
 }
 .sort-by-price{
@@ -72,7 +73,6 @@ div label input[type="checkbox"] {
   margin-right: 5px;
 }
 
-/* Optional: Increase the space between the filter and category labels */
 .sort {
   margin-bottom: 20px;
 }

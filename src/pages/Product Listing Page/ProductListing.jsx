@@ -16,7 +16,7 @@ import Sidebar from "../../components/Sidebar";
 import "./ProductListing.css";
 
 const ProductListing = () => {
-  const { handleAddToCart, cart } = useContext(CartContext); // Get the cart from the context
+  const { handleAddToCart, cart } = useContext(CartContext); 
   const { handleAddToWishlist, wishlist, handleDeleteFromWishlist } =
     useContext(WishlistContext);
   const { selectedCategory } = useCategoryContext();
@@ -55,9 +55,14 @@ const ProductListing = () => {
   };
 
   useEffect(() => {
-    const filteredProducts = applyCategoryFilter(products, selectedCategories);
-    setTechProducts(filteredProducts);
-  }, [selectedCategories, setTechProducts]);
+    const filteredByCategory = applyCategoryFilter(
+      products,
+      selectedCategories
+    );
+    const filteredByRating = filterProductsByRating(filteredByCategory, value);
+
+    setTechProducts(filteredByRating);
+  }, [selectedCategories, value]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -72,8 +77,11 @@ const ProductListing = () => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    const filteredProducts = applyCategoryFilter(products, selectedCategories);
-    const updatedTechProducts = filteredProducts.map((product) => ({
+    const filteredByCategory = applyCategoryFilter(
+      products,
+      selectedCategories
+    );
+    const updatedTechProducts = filteredByCategory.map((product) => ({
       ...product,
       cartValue: !!cart.find((item) => item._id === product._id),
       wishlistValue: !!wishlist.find((item) => item._id === product._id),
