@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { WishlistContext } from "../contexts/WishlistContext";
+import { AuthContext } from "../contexts/AuthContext";
 import "./Navbar.css";
 const Navbar = ({ techProducts }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -10,6 +11,7 @@ const Navbar = ({ techProducts }) => {
   const { cart } = useContext(CartContext);
   const { wishlist } = useContext(WishlistContext);
   const navigate = useNavigate();
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchValue(value);
@@ -30,6 +32,11 @@ const Navbar = ({ techProducts }) => {
     } else {
       console.log("Product not found!");
     }
+  };
+  const location = useLocation();
+  const handleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+    navigate(location?.state?.from?.pathname);
   };
 
   return (
@@ -99,7 +106,7 @@ const Navbar = ({ techProducts }) => {
         >
           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
         </svg>
-        {cart.length > 0 && (
+        {cart.length > 0 && isLoggedIn && (
           <span className="count-badge cart-count">{cart.length}</span>
         )}
       </NavLink>
@@ -117,10 +124,11 @@ const Navbar = ({ techProducts }) => {
             d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
           />
         </svg>
-        {wishlist.length > 0 && (
+        {wishlist.length > 0 && isLoggedIn &&(
           <span className="count-badge wishlist-count">{wishlist.length}</span>
         )}
       </NavLink>
+      <button onClick={handleLogin}>{isLoggedIn ? "Logout" : "Login"}</button>
     </nav>
   );
 };
